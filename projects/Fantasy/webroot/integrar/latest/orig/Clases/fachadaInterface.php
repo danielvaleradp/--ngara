@@ -13,6 +13,8 @@ require_once 'Manager.php';
 require_once 'Perfil_Usuario.php';
 require_once 'Contenidos.php';
 
+require_once 'Liga.php';
+
 class fachadaInterface {
     
     private static $instancia;
@@ -59,6 +61,9 @@ class fachadaInterface {
             case "Contenidos":
                 $obj = new Contenidos($_POST);
                 break; 				
+            case "Liga":
+                $obj = new Liga($_POST);
+                break;
         endswitch;
         $obj->insertar();
     }
@@ -101,6 +106,10 @@ class fachadaInterface {
                 $obj = new Roster_Equipo($_POST);
                 break;                        
 //
+
+            case "Liga":
+                $obj = new Liga($_POST);
+            break;
         endswitch;
 
         $obj->actualizar();
@@ -142,6 +151,10 @@ class fachadaInterface {
             case "Contenidos":
                 $obj = new Contenidos($_POST);
                 break;  				
+                
+            case "Liga":
+                $obj = new Liga($_POST);
+            break;
         endswitch;
         $obj->eliminar();
     }
@@ -181,7 +194,11 @@ class fachadaInterface {
 //ROSTER            
             case "Contenidos":
                 $obj = new Contenidos($_POST);
-                break;   
+                break;
+                
+            case "Liga":
+                $obj = new Liga($_POST);
+            break;
         endswitch;
         $obj->obtener();
         return $obj;
@@ -222,7 +239,11 @@ class fachadaInterface {
 //ROSTER            
             case "Contenidos":
                 $obj = new Contenidos($_POST);
-                break;    
+                break;
+                
+            case "Liga":
+                $obj = new Liga($_POST);
+            break;
         endswitch;
         $arr = $obj->obtenerTodos();
         return $arr;

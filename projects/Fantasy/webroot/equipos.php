@@ -14,8 +14,10 @@
                 <p><strong>Año de fundacion:</strong> <?php echo $e->get('año de fundación'); ?></p>
         </form>
 </div>
-<?php   } ?>
+<?php   }
+        if (has_auth('admin')) { ?>
 <form id="form" action="equipo_insert.php" method="post">
         <input type="submit" value="Agregar equipo"/>
 </form>
-<?php   require('include/post.html'); ?>
+<?php }
+      require('include/post.html'); ?>

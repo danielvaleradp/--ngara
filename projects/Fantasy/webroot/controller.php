@@ -14,10 +14,40 @@
                 'contenido_insert' => array(
                         'authorization' => 'admin',
                         'action' => function () {
-                                if ($user_class)
+                                if ($user_class) //FIXME
                                 insert_fields('Contenido', set_fields('Contenido', array(
                                         'fecha' => date('Y-m-d H:i:sP')
                                 )));
+                        }
+                ),
+
+                'equipo_insert' => array(
+                        'authorization' => 'guest',
+                        'action' => function () {
+                                $nombre = '';
+                                
+                                if($_FILES['imagen']['error'] == 0) {
+                                    // Ruta donde se guardarán las imágenes
+                                    $directorio = 'static/images/equipo/';
+
+                                    // Recibo los datos de la imagen
+                                    $nombre = $_FILES['imagen']['name'];
+                                    $tipo = $_FILES['imagen']['type'];
+                                    $tamano = $_FILES['imagen']['size'];
+
+                                    // Muevo la imagen desde su ubicación
+                                    // temporal al directorio definitivo
+                                    chmod($directorio,0777);
+                                    $d = move_uploaded_file($_FILES['imagen']['tmp_name'],$directorio.$nombre);
+                                }
+                                
+                                else {
+                                    $nombre = 'generico.jpg';
+                                }
+                                
+                                insert_fields('Equipo', array(
+                                    'URL del logo' => $nombre
+                                ));
                         }
                 ),
 

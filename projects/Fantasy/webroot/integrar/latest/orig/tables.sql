@@ -274,3 +274,21 @@ CREATE TABLE "Fantasy"."Contenidos" (
                 PRIMARY KEY ("id")
 );
 
+CREATE TABLE "Fantasy"."Liga" (
+        "id"                            serial                          NOT NULL,
+        "nombre"                        text                            NOT NULL,
+        "creador"                       integer                         NOT NULL,
+        "es_publica"                    bool                            NOT NULL,
+
+        CONSTRAINT "Liga PRIMARY KEY"
+                PRIMARY KEY ("id"),
+
+        CONSTRAINT "Liga UNIQUE nombre, creador"
+                UNIQUE ("nombre", "creador"),
+
+        CONSTRAINT "Liga FOREIGN KEY creador REFERENCES Usuario"
+                FOREIGN KEY ("creador")
+                REFERENCES "Fantasy"."Usuario" ("id")
+                ON DELETE CASCADE
+);
+
