@@ -171,7 +171,6 @@ class fachadaBD {
          
          return $Res->getArrayCopy();
     }
-	
 }
 
 ?>
